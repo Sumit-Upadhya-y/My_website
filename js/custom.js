@@ -1,43 +1,36 @@
 (function ($) {
 
-    "use strict";
+  "use strict";
 
-        // PRE LOADER
-        $(window).load(function(){
-          $('.preloader').fadeOut(1000); // set duration in brackets    
-        });
+    // COLOR MODE
+    $('.color-mode').click(function(){
+        $('.color-mode-icon').toggleClass('active')
+        $('body').toggleClass('dark-mode')
+    })
 
+    // HEADER
+    $(".navbar").headroom();
 
-        // navigation Section
-        $('.navbar-collapse a').on('click',function(){
-          $(".navbar-collapse").collapse('hide');
-        });
+    // PROJECT CAROUSEL
+    $('.owl-carousel').owlCarousel({
+    	items: 1,
+	    loop:true,
+	    margin:10,
+	    nav:true
+	});
 
+    // SMOOTHSCROLL
+    $(function() {
+      $('.nav-link, .custom-btn-link').on('click', function(event) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top - 49
+        }, 1000);
+        event.preventDefault();
+      });
+    });  
 
-        // Parallax Js
-        function initParallax() {
-          $('#home').parallax("50%", 50);
-          $('#service').parallax("50%", 40);
-          $('#about').parallax("50%", 20);
-          $('#work').parallax("50%", 30);
-          $('#contact').parallax("50%", 10);
-          }
-        initParallax();
-        
-
-        // smoothscroll js
-        $(function() {
-          $('#home a').bind('click', function(event) {
-            var $anchor = $(this);
-            $('html, body').stop().animate({
-                scrollTop: $($anchor.attr('href')).offset().top - 49
-            }, 1000);
-            event.preventDefault();
-          });
-        });  
-
-
-        // WOW Animation js
-        new WOW({ mobile: false }).init();
+    // TOOLTIP
+    $('.social-links a').tooltip();
 
 })(jQuery);
