@@ -1,600 +1,1464 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Sumit Upadhyay Portfolio</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sumit Upadhyay – Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /* ─── TOKENS ─────────────────────────────── */
+    :root {
+      --bg:       #080c14;
+      --bg2:      #0d1220;
+      --bg3:      #111827;
+      --border:   rgba(255,255,255,.07);
+      --accent:   #00d4ff;
+      --accent2:  #7c5cfc;
+      --gold:     #f5c542;
+      --text:     #e2e8f0;
+      --muted:    #64748b;
+      --card:     #0f1724;
+      --radius:   14px;
+      --font-h:   'Syne', sans-serif;
+      --font-b:   'DM Sans', sans-serif;
+      --font-m:   'DM Mono', monospace;
+    }
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    /* ─── RESET ──────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
+    a:hover { opacity: .75; }
+    img { max-width: 100%; }
 
-    <link rel="stylesheet" href="css/aos.css">
+    /* ─── SCROLLBAR ───────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 99px; }
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    /* ─── LANGUAGE TOGGLE ────────────────────── */
+    .lang-banner {
+      background: linear-gradient(135deg, rgba(124,92,252,.08), rgba(0,212,255,.08));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .lang-banner-text {
+      font-family: var(--font-m);
+      font-size: .82rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+    #lang-toggle {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border: none;
+      color: #fff;
+      font-family: var(--font-m);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      padding: 10px 24px;
+      border-radius: 99px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(124,92,252,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    #lang-toggle:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(124,92,252,.6); }
+    #lang-toggle .flag { font-size: 1rem; }
 
+    /* ─── CERTIFICATIONS GRID ─────────────────── */
+    #certifications { background: var(--bg3); }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .cert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: border-color .3s, transform .3s;
+    }
+    .cert-card:hover { border-color: rgba(124,92,252,.35); transform: translateY(-3px); }
+    .cert-icon-wrap {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+    .cert-icon-wrap.green  { background: rgba(0,212,100,.1); border-color: rgba(0,212,100,.2); }
+    .cert-icon-wrap.blue   { background: rgba(0,152,255,.1); border-color: rgba(0,152,255,.2); }
+    .cert-icon-wrap.purple { background: rgba(124,92,252,.1); border-color: rgba(124,92,252,.2); }
+    .cert-icon-wrap.gold   { background: rgba(245,197,66,.1); border-color: rgba(245,197,66,.2); }
+    .cert-icon-wrap.teal   { background: rgba(0,212,255,.1); border-color: rgba(0,212,255,.2); }
+    .cert-body {}
+    .cert-name {
+      font-family: var(--font-b);
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: .25rem;
+    }
+    .cert-issuer {
+      font-family: var(--font-m);
+      font-size: .72rem;
+      color: var(--muted);
+    }
+    .cert-date {
+      display: inline-block;
+      margin-top: .35rem;
+      font-family: var(--font-m);
+      font-size: .68rem;
+      color: var(--accent);
+      background: rgba(0,212,255,.07);
+      border: 1px solid rgba(0,212,255,.15);
+      padding: 1px 8px;
+      border-radius: 99px;
+    }
+    @media (max-width: 768px) { .cert-grid { grid-template-columns: 1fr; } }
 
+    /* ─── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: rgba(8,12,20,.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -.02em;
+      color: var(--text);
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .85rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: .04em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); opacity: 1; }
 
-<style>
+    /* ─── HERO ────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 2rem 2rem;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .hero-glow {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,92,252,.18) 0%, transparent 70%);
+      top: -100px; right: -200px;
+      pointer-events: none;
+    }
+    .hero-glow2 {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,212,255,.12) 0%, transparent 70%);
+      bottom: 0; left: -100px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,212,255,.08);
+      border: 1px solid rgba(0,212,255,.25);
+      border-radius: 99px;
+      padding: 6px 18px;
+      font-family: var(--font-m);
+      font-size: .78rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      letter-spacing: .06em;
+      animation: fadeUp .6s ease both;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
+    .hero-name {
+      font-family: var(--font-h);
+      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      animation: fadeUp .6s .1s ease both;
+    }
+    .hero-name .gradient-text {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-typing-wrap {
+      font-family: var(--font-m);
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--gold);
+      margin: 1rem 0;
+      min-height: 2rem;
+      animation: fadeUp .6s .2s ease both;
+    }
+    #typing-text::after {
+      content: '|';
+      animation: blink .7s infinite;
+      margin-left: 2px;
+      color: var(--accent);
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      animation: fadeUp .6s .3s ease both;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp .6s .4s ease both;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #fff;
+      font-family: var(--font-b);
+      font-weight: 500;
+      font-size: .9rem;
+      padding: 12px 28px;
+      border-radius: 99px;
+      border: none;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(124,92,252,.4); opacity: 1; color:#fff; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      font-family: var(--font-b);
+      font-weight: 500;
+      font-size: .9rem;
+      padding: 11px 28px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color .2s, transform .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); opacity: 1; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: fadeUp .6s .8s ease both;
+    }
+    .hero-scroll span { font-size: .7rem; color: var(--muted); letter-spacing: .1em; font-family: var(--font-m); }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollAnim 1.5s infinite;
+    }
+    @keyframes scrollAnim {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
 
-/*======================================
-//--//-->   ABOUT
-======================================*/
+    /* ─── SECTIONS ────────────────────────────── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--font-m);
+      font-size: .78rem;
+      letter-spacing: .14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      font-family: var(--font-h);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .section-title .dim { color: var(--muted); }
+    .section-desc { color: var(--muted); max-width: 540px; font-size: .95rem; }
 
-.about-mf .box-shadow-full {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
+    /* ─── ABOUT ───────────────────────────────── */
+    #about { background: var(--bg2); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+    }
+    .about-avatar-placeholder {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      letter-spacing: -.04em;
+    }
+    .about-meta p {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      font-size: .88rem;
+    }
+    .about-meta p .label {
+      font-family: var(--font-m);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .about-meta p .val { color: var(--text); font-weight: 400; }
+    .skill-bars { margin-top: 1.5rem; }
+    .skill-row { margin-bottom: 1.1rem; }
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: .8rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-family: var(--font-m);
+    }
+    .skill-track {
+      height: 5px;
+      background: rgba(255,255,255,.06);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1s cubic-bezier(.22,1,.36,1);
+    }
+    .skill-fill.animated { transform: scaleX(1); }
 
-.about-mf .about-img {
-  margin-bottom: 2rem;
-}
+    .about-text .section-title { margin-bottom: 1rem; }
+    .about-text p { color: var(--muted); font-size: .95rem; margin-bottom: 1.5rem; }
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+    .tag {
+      background: rgba(0,212,255,.07);
+      border: 1px solid rgba(0,212,255,.18);
+      color: var(--accent);
+      font-size: .78rem;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-family: var(--font-m);
+    }
 
-.about-mf .about-img img {
-  margin-left: 10px;
-}
+    /* ─── RESUME ──────────────────────────────── */
+    #resume { background: var(--bg); }
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    .timeline-col h3 {
+      font-family: var(--font-h);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .8rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+    }
+    .timeline-col h3::before {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 2px;
+      background: var(--accent);
+    }
+    .tl-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      transition: border-color .3s, transform .3s;
+    }
+    .tl-item:hover { border-color: rgba(0,212,255,.3); transform: translateX(4px); }
+    .tl-date {
+      font-family: var(--font-m);
+      font-size: .72rem;
+      color: var(--accent);
+      letter-spacing: .08em;
+      margin-bottom: .4rem;
+    }
+    .tl-title {
+      font-family: var(--font-h);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .2rem;
+    }
+    .tl-sub {
+      font-size: .83rem;
+      color: var(--muted);
+      margin-bottom: .7rem;
+    }
+    .tl-item ul {
+      padding-left: 1rem;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    .tl-item ul li { margin-bottom: .3rem; }
+    .tl-item ul li::marker { color: var(--accent); }
+    .tl-grade {
+      display: inline-block;
+      margin-top: .6rem;
+      font-family: var(--font-m);
+      font-size: .78rem;
+      color: var(--gold);
+      background: rgba(245,197,66,.08);
+      border: 1px solid rgba(245,197,66,.2);
+      padding: 3px 10px;
+      border-radius: 99px;
+    }
+    .resume-dl {
+      margin-top: 3rem;
+      text-align: center;
+    }
 
+    /* ─── STATS ───────────────────────────────── */
+    #stats {
+      background: linear-gradient(135deg, var(--bg2), var(--bg3));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 4rem 2rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 1.5rem;
+    }
+    .stat-card {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color .3s, transform .3s;
+    }
+    .stat-card:hover { border-color: rgba(124,92,252,.4); transform: translateY(-5px); }
+    .stat-num {
+      font-family: var(--font-h);
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: .5rem;
+      font-family: var(--font-m);
+      letter-spacing: .06em;
+    }
 
-.skill-mf .progress {
-  /* background-color: #cde1f8; */
-  margin: .5rem 0 1.2rem 0;
-  border-radius: 0;
-  height: .7rem;
-}
+    /* ─── PROJECTS ────────────────────────────── */
+    #projects { background: var(--bg2); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .3s, transform .3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover { border-color: rgba(0,212,255,.3); transform: translateY(-6px); }
+    .project-thumb {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-thumb-1 { background: linear-gradient(135deg, #0d1b2a, #1a2f4a); }
+    .project-thumb-2 { background: linear-gradient(135deg, #1a0d2a, #2f1a4a); }
+    .project-thumb-3 { background: linear-gradient(135deg, #0d2a1a, #1a4a2f); }
+    .project-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--card), transparent);
+    }
+    .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: .8rem;
+    }
+    .tech-chip {
+      font-family: var(--font-m);
+      font-size: .7rem;
+      color: var(--accent2);
+      background: rgba(124,92,252,.1);
+      border: 1px solid rgba(124,92,252,.2);
+      padding: 2px 9px;
+      border-radius: 99px;
+    }
+    .project-title {
+      font-family: var(--font-h);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+    .project-desc { color: var(--muted); font-size: .85rem; flex: 1; }
+    .project-link {
+      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-m);
+      font-size: .78rem;
+      color: var(--accent);
+      letter-spacing: .04em;
+    }
+    .project-link svg { transition: transform .2s; }
+    .project-link:hover svg { transform: translate(3px,-3px); }
 
-.skill-mf .progress .progress-bar {
-  height: .7rem;
-  background-color: #ffbd39;
-}
+    /* ─── CONTACT ─────────────────────────────── */
+    #contact { background: var(--bg); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+      transition: border-color .3s, transform .3s;
+    }
+    .contact-card:hover { border-color: rgba(0,212,255,.3); transform: translateY(-5px); }
+    .contact-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124,92,252,.15), rgba(0,212,255,.15));
+      border: 1px solid rgba(0,212,255,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.4rem;
+    }
+    .contact-card h4 {
+      font-family: var(--font-h);
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    .contact-card p {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .contact-card a { color: var(--accent); font-size: .82rem; }
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 20px;
+      border-radius: 99px;
+      font-size: .85rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .social-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); opacity: 1; }
 
+    /* ─── FOOTER ──────────────────────────────── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem;
+      font-size: .82rem;
+      color: var(--muted);
+      font-family: var(--font-m);
+    }
+    footer span { color: var(--accent); }
 
-/* Animation styles */
-#typing-animation {
-  position: relative;
-  font-size: 30px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3s steps(20, end) infinite;
-}
+    /* ─── ANIMATIONS ──────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
 
-#typing-animation:before {
-  content: "";
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #ccc;
-  animation: typing-cursor 0.5s ease-in-out infinite;
-}
+    /* ─── MOBILE ──────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
+<!-- ═══ NAV ══════════════════════════════════════ -->
+<nav>
+  <div class="nav-brand">Sumit<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero"     data-i18n="nav_home">Home</a></li>
+    <li><a href="#about"    data-i18n="nav_about">About</a></li>
+    <li><a href="#resume"   data-i18n="nav_resume">Resume</a></li>
+    <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+    <li><a href="#certifications" data-i18n="nav_certs">Certs</a></li>
+    <li><a href="#contact"  data-i18n="nav_contact">Contact</a></li>
+  </ul>
+</nav>
 
-@keyframes typing-cursor {
-  from {
-    width: 5px;
-  }
-  to {
-    width: 0;
-  }
-}
+<!-- ═══ HERO ══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge" data-i18n="hero_badge">Available for Werkstudent roles · Trier, Germany</div>
+    <h1 class="hero-name">
+      <span data-i18n="hero_iam">I'm </span><span class="gradient-text">Sumit Upadhyay</span>
+    </h1>
+    <div class="hero-typing-wrap"><span id="typing-text"></span></div>
+    <p class="hero-desc" data-i18n="hero_desc">
+      Data Analyst with 1.5+ years of experience turning raw data into actionable insights — SQL, Python, Power BI &amp; Tableau.
+    </p>
+    <div class="hero-cta">
+      <a href="https://www.linkedin.com/in/sumitupadhyay815/" class="btn-primary" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Sumit-Upadhya-y?tab=repositories" class="btn-outline" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        <span data-i18n="hero_works">My Works</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span data-i18n="hero_scroll">scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-
-/* project image zoom effect */
-
-.zoom-effect {
-  overflow: hidden;
-  transition: transform 0.3s ease-out;
-}
-
-.zoom-effect:hover {
-  transform: scale(1.1);
-}
-
-
-</style>
-
-
-  </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	  
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Sumit Upadhyay</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
-	          <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
-	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-	  <section id="home-section" class="hero">
-		  <div class="home-slider  owl-carousel">
-	       <div class="slider-item ">
-	      	<div class="overlay"></div>
-	         <div class="container">
-	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/image11.jpg);">
-	          	 <div class="overlay"></div>
-	          	</div>
-		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '100%' }">
-		          	<div class="text">
-		          		<span class="subheading">Namaste!</span>
-			            <h1 class="mb-4 mt-3">I'm <span>Sumit Upadhyay</span></h1>
-
-						<!-- Element to contain animated typing -->
-						<span id="typing-animation"></span>
-
-						<script>
-
-						// Initialize the typing animation
-						const typingAnimationElement = document.getElementById('typing-animation');
-
-						// Create an array of typing text
-						const typingTexts = [
-						'SQL Developer',
-						'BI Analyst',
-						'AI & ML Enthusiast ',
-						];
-
-						// Create a function to display the typing animation for a given text
-						function playTypingAnimation(text) {
-						// Loop through each character and add it to the element
-						for (let i = 0; i < text.length; i++) {
-							setTimeout(() => {
-							typingAnimationElement.textContent += text[i];
-							}, i * 200); // Increase the delay to slow down the typing animation
-						}
-
-						// Once the animation is complete, reset the text and start over
-						setTimeout(() => {
-							typingAnimationElement.textContent = '';
-							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-						}, text.length * 200);
-						}
-
-						// Start the typing animation loop
-						playTypingAnimation(typingTexts[0]);
-
-						</script>
-
-						<br>
-						<br>
-			            <h2>Data Analyst</h2>
-						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
-						<!-- <br> -->
-			            <p><a href="https://www.linkedin.com/in/sumitupadhyay815/" class="btn btn-primary py-3 px-4">LinkedIn</a> 
-							<a href="https://github.com/Sumit-Upadhya-y?tab=repositories" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-		</div>
-    </section>
-
-
-
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-    	<div class="container">
-			<div class="row">
-				<div class="row d-flex align-items-stretch">
-				<!-- <div class="row d-flex"> -->
-					<div class="col-md-6 col-lg-5 d-flex">
-						<div class="img-about img d-flex align-items-stretch">
-							<div class="overlay">
-								<div class="row">
-									<div class="col-sm-6 col-md-5">
-									  <div class="about_img">
-										<img src="images/about-me.png" class="img-fluid rounded b-shadow-a" alt="">
-									  </div>
-									</div>
-									<!-- Details next to profile image -->
-									<div class="col-sm-6 col-md-7">
-									  <div class="about-info">
-										<p><span class="title-s">Name: </span> <span>Sumit Upadhyay</span></p>
-										<p><span class="title-s">Course: </span> <span>B.Tech in Artificial Intelligence and Data Science</span></p>
-										<p><span class="title-s">Experience: </span> <span>Data Analyst</span></p>
-										<p><span class="title-s">Address: </span> <span>Mumbai, India</span></p>
-									  </div>
-									</div>
-								  </div>
-
-								<div class="skill-mf">
-									<p class="title-s">Skills</p>
-									<span>SQL</span> <span class="pull-right"></span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="95" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>PYTHON</span> <span class="pull-right"></span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Data Visualization</span> <span class="pull-right"></span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="90" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Tableau & Power BI</span> <span class="pull-right"></span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Data Science</span> <span class="pull-right"></span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-						<div class="row justify-content-start pb-3">
-							<div class="col-md-12 heading-section ftco-animate">
-								
-								<h1 class="big">About</h1>
-								<h2 class="mb-4">About Me</h2>
-								
-								<p>A passionate Data Analyst with a strong foundation in Artificial Intelligence, Machine Learning, and Advanced Analytics. I specialize in turning raw data into meaningful insights, optimizing business operations, and leveraging AI-driven solutions for real-world impact.
-									With hands-on experience in predictive analytics, NLP, data engineering, and visualization, I thrive at the intersection of data science and business intelligence. My expertise spans across Python, SQL, R, TensorFlow, PyTorch, Power BI, and Tableau, allowing me to create scalable and automated analytical solutions that drive decision-making.</p>
-								<ul class="about-info mt-4 px-md-0 px-2">
-									<li class="d-flex"><span>Profile:</span> <span>Student</span></li>
-									<!-- <li class="d-flex"><span>Domain:</span> <span>Retail, Ecommerce, BFSI &amp; Digital Marketing</span></li> -->
-									<li class="d-flex"><span>Education:</span> <span>Bachelor of Technology</span></li>
-									<li class="d-flex"><span>Language:</span> <span>English, Hindi, Marathi</span></li>
-									<li class="d-flex"><span>Soft Skills:</span> <span>Analytical Thinking, Problem Solving, Communication, Teamwork, Statistical Analysis &amp; Strong Analytical Thinking</span></li>
-									
-								</ul>
-							</div>
-						</div>
-						<br>
-						<br>	
-						<br>
-						<br>
-
-
-						<div class="counter-wrap ftco-animate d-flex mt-md-3">
-							<div class="text">
-								<p class="mb-4">
-									<span class="number" data-number="12">12</span> <span>+</span>
-									<span>&nbsp; Projects completed</span>
-								</p>
-								<p><a href="https://www.linkedin.com/in/sumitupadhyay815" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-    </section>
-
-	<section class="ftco-section ftco-no-pb" id="resume-section">
-    	<div class="container">
-    		<div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-          	<h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p>Results-driven Data Analyst with experience in predictive analytics, machine learning, NLP, and data engineering, leveraging Python, SQL, R, TensorFlow, and Power BI to extract insights and optimize business operations. At SDU Tradelink, developed AI-driven forecasting models, automated ETL pipelines (30% faster processing), and designed interactive dashboards for data-driven decision-making. Previously at TWN Logistics, implemented ML models for demand forecasting, improving accuracy by 15% and reducing costs by 10%. Strong expertise in big data technologies (Hadoop, Spark), business intelligence, and cross-functional collaboration, driving AI-powered solutions for efficiency and innovation.</p>
-        </div>
-		
-		<div class="row">
-				<div class="col-md-6">
-					<div class="resume-wrap ftco-animate">
-						<span class="date">May 2024-Present</span>
-						<h2>Data Analyst</h2>
-						<span class="position">SDU Tradelink Pvt. Ltd.</span>
-						<p class="mt-4">
-							<ul>
-								<li>Engineered and deployed predictive analytics models to forecast demand, optimize inventory levels, and improve supply chain
-									efficiency, reducing costs by 20%.</li>
-								<li>Automated ETL data pipelines, ensuring seamless data extraction, transformation, and loading for analytical processes, improving
-									data processing speed by 30%</li>
-								<li>Designed and maintained interactive dashboards in Tableau and Power BI, enabling data-driven decision-making across multiple
-									business functions.</li>
-								<li>Collaborated with cross-functional teams, including operations, finance, and IT, to align AI-driven insights.</li>
-							</ul>
-						</p>
-					</div>
-
-				</div>
-
-				<div class="col-md-6">
-					<div class="resume-wrap ftco-animate">
-						<span class="date">Dec 2023-April 2024</span>
-						<h2>Data Analyst Intern</h2>
-						<span class="position">TWN Logistics PVT LTD </span>
-						<p class="mt-4">
-							<ul>
-								<li>Developed machine learning models for demand forecasting and inventory optimization, improving forecasting accuracy by 15% and
-									reducing inventory costs by 10%.</li>
-								<li>Applied advanced analytics to optimize warehouse operations and supply chain workflows, leading to a 20% improvement in
-									operational efficiency.</li>
-								<li>Automated data collection and processing pipelines using Python and SQL, reducing manual effort and enhancing reporting
-									efficiency.</li>
-							</ul>
-						</p>
-					</div>
-
-				</div>
-			</div>
-
-		<br>
-		<br>
-
-		<div class="row">
-			<h1 class="big-4">Education</h1>
-			<div class="underline"></div>
-		</div>
-		<br>
-		
-			<div class="row">
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2020-2024</span>
-    					<h2>Bachelor of Technology</h2>
-    					<span class="position">Thakur College Of Engineering and Technology</span>
-    					<p class="mt-4">Grade: 8.80 SGPA</p>
-    				</div>
-    			</div>
-
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2018-2020</span>
-    					<h2>Higher Secondary School</h2>
-    					<span class="position">Sardar Vallabhbhai Patel Vidyalaya and Jr. College</span>
-    					<p class="mt-4">Grade: First class distinction.</p>
-    				</div>
-				</div>
-    		</div>
-
-    		<div class="row justify-content-center mt-5">
-    			<div class="col-md-6 text-center ftco-animate">
-    				<p><a href="https://drive.google.com/file/d/1eFJOyOX6CFas-fBb-1JjWqmB2RnIXkay/view?usp=sharing" class="btn btn-primary py-4 px-5">Download CV</a></p>
-    			</div>
-    		</div>
-    	</div>
-    </section>
-
-
-
-    <section class="ftco-section" id="project-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Projects</h2>
-            <p>Here are a few projects that have significantly enhanced my skills and deepened my understanding of development and Data Analysis.</p>
+<!-- ═══ ABOUT ═════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <p class="section-label" data-i18n="about_label">Get to know me</p>
+    <h2 class="section-title fade-in"><span data-i18n="about_title">About</span> <span class="dim" data-i18n="about_title2">Me</span></h2>
+    <div class="about-grid">
+      <div class="fade-in">
+        <div class="about-card">
+          <div class="about-avatar-placeholder">SU</div>
+          <div class="about-meta">
+            <p><span class="label" data-i18n="ab_name_l">Name</span><span class="val">Sumit Upadhyay</span></p>
+            <p><span class="label" data-i18n="ab_loc_l">Location</span><span class="val">Trier, Germany</span></p>
+            <p><span class="label" data-i18n="ab_study_l">Currently</span><span class="val" data-i18n="ab_study_v">M.Sc. Data Science · Uni Trier</span></p>
+            <p><span class="label" data-i18n="ab_lang_l">Languages</span><span class="val">English B2 · German A2 · Hindi · Marathi</span></p>
           </div>
-        </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/Sumit-Upadhya-y/SQL_PROJECT_FOR_JOBS_ANALYSIS" class="block-20 zoom-effect" style="background-image: url('images/proj_1.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/Sumit-Upadhya-y/SQL_PROJECT_FOR_JOBS_ANALYSIS">Jobs Analysis Using SQL</a></h3>
-                <p>This project focuses on analyzing the data analyst job market to identify top-paying roles and the most in-demand skills. The primary goal is to provide insights into salary trends, required expertise, and optimal skill development for aspiring data analysts. By leveraging SQL and PostgreSQL, the project examines job postings, extracting key metrics such as salary ranges, job locations, and skill demand. The analysis helps professionals understand which technical skills—such as SQL, Python, and Tableau—offer the highest earning potential and job opportunities.</p>
-              </div>
+          <div class="skill-bars">
+            <div class="skill-row">
+              <div class="skill-header"><span>SQL</span><span>80%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--w:.80"></div></div>
             </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/Sumit-Upadhya-y/Analyzing-Fitbit-Fitness-Tracker-Data-using-EXCEL" class="block-20 zoom-effect" style="background-image: url('images/proj_2.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                  
-                  <h3 class="heading"><a href="https://github.com/Sumit-Upadhya-y/SQL_PROJECT">IPL Auction Strategy Analysis Using SQL</a></h3>
-                  <p>This project focuses on developing a comprehensive auction strategy for a new Indian Premier League (IPL) franchise by analyzing historical IPL data. The primary goal is to build a strong and balanced squad by selecting players based on their past performances, considering metrics like strike rate, batting average, bowling economy, and strike rate. The project uses SQL for data manipulation and analysis, with data sourced from IPL seasons 1 to 13.</p>
-               
-              </div>
+            <div class="skill-row">
+              <div class="skill-header"><span>Python</span><span>75%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--w:.75"></div></div>
             </div>
-          </div>
-         <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="https://github.com/Sumit-Upadhya-y/AI-BASED-CHATBOT-FOR-FAQs" class="block-20 zoom-effect" style="background-image: url('images/proj_3.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-                  
-                  <h3 class="heading"><a href="https://github.com/Sumit-Upadhya-y/Analyzing-Fitbit-Fitness-Tracker-Data-using-EXCEL">Analyzing Fitbit Data using EXCEL</a></h3>
-                  <p>This project focuses on analyzing Fitbit fitness tracker data to uncover key insights into user activity, health trends, and performance metrics. The primary goal is to interpret and visualize fitness data using Excel, leveraging techniques like data cleaning, pivot tables, and charts to identify patterns in step count, calories burned, heart rate, and sleep cycles. By examining Fitbit data, the project provides valuable insights into user behavior, helping individuals track progress, optimize workouts, and improve overall health and fitness.</p>
-
-               
-              </div>
+            <div class="skill-row">
+              <div class="skill-header"><span>Power BI / Tableau</span><span>80%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--w:.80"></div></div>
             </div>
-          </div>
-        </div>
-	<br>
-
-
-		 </div>
-	  </div>
-    </section>
-
-	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
-      <div class="container">
-		<div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="5">5</strong>
-                <span>Achievements</span>
-              </div>
+            <div class="skill-row">
+              <div class="skill-header"><span data-i18n="skill_dataviz">Data Visualisation</span><span>85%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--w:.85"></div></div>
             </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="12">12</strong>
-                <span>Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="3">3</strong>
-                <span>API's Integrated</span>
-              </div>
-            </div>
-          </div>
-         <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="20">20</strong>
-                <span>Workshops Attended</span>
-              </div>
+            <div class="skill-row">
+              <div class="skill-header"><span>ETL / Data Engineering</span><span>70%</span></div>
+              <div class="skill-track"><div class="skill-fill" style="--w:.70"></div></div>
             </div>
           </div>
         </div>
       </div>
-	
-	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-			<!-- <div class="container"> -->
-				<div class="row justify-content-center">
-					<div class="col-md-7 ftco-animate text-center">
-						<h2>More projects on<span> Github  </span> </h2>
-						<div class="heading"> <h4> I love building innovative solutions, exploring data-driven insights, and creating impactful tech projects. </h4>
-						<br>
-						<p><a href="https://github.com/Sumit-Upadhya-y?tab=repositories" class="btn btn-primary py-3 px-5">GitHub</a></p>
-						</div>
-					</div>
-				</div>
-			<!-- </div> -->
-		</div>
-	</section>
 
+      <div class="about-text fade-in">
+        <h2 class="section-title" data-i18n="about_heading">Turning data into decisions.</h2>
+        <p data-i18n="about_p1">
+          A passionate Data Analyst currently pursuing my M.Sc. in Data Science at Universität Trier. I specialise in building KPI dashboards, automating ETL pipelines, and conducting root cause analysis that directly improves business efficiency.
+        </p>
+        <p data-i18n="about_p2">
+          With 1.5+ years of professional experience at SDU Tradelink and TWN Logistics, I've worked end-to-end: from raw PostgreSQL queries to polished Tableau dashboards used by management teams.
+        </p>
+        <div class="about-tags">
+          <span class="tag">SQL</span>
+          <span class="tag">Python</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">ETL</span>
+          <span class="tag">Excel</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ═══ RESUME ════════════════════════════════════ -->
+<section id="resume">
+  <div class="container">
+    <p class="section-label" data-i18n="res_label">Experience &amp; Education</p>
+    <h2 class="section-title fade-in"><span data-i18n="res_title">My</span> <span class="dim" data-i18n="res_title2">Resume</span></h2>
+    <div class="timeline-grid">
+      <!-- EXPERIENCE -->
+      <div class="fade-in">
+        <h3 data-i18n="res_exp">Work Experience</h3>
+        <div class="tl-item">
+          <div class="tl-date">11/2024 – 02/2026</div>
+          <div class="tl-title">Data Analyst</div>
+          <div class="tl-sub">SDU Tradelink Pvt. Ltd. · Mumbai</div>
+          <ul>
+            <li data-i18n="sdu1">Tableau KPI dashboards → 30% faster management decisions</li>
+            <li data-i18n="sdu2">Automated ETL pipelines with Python &amp; SQL</li>
+            <li data-i18n="sdu3">Root cause analysis → reduced downtime by 20%</li>
+            <li data-i18n="sdu4">SOP documentation &amp; process standardisation</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">12/2023 – 04/2024</div>
+          <div class="tl-title" data-i18n="twn_title">Data Analyst Intern</div>
+          <div class="tl-sub">TWN Logistics Pvt. Ltd. · Mumbai</div>
+          <ul>
+            <li data-i18n="twn1">ETL workflows for logistics datasets</li>
+            <li data-i18n="twn2">Power BI &amp; Tableau dashboards → 25% faster decisions</li>
+            <li data-i18n="twn3">Defined &amp; tracked data quality KPIs</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">10/2022 – 12/2022</div>
+          <div class="tl-title" data-i18n="ngo_title">Web Developer Intern</div>
+          <div class="tl-sub">Badlav Seva Samiti (NGO) · Remote</div>
+          <ul>
+            <li data-i18n="ngo1">MySQL-backed web apps with HTML &amp; CSS</li>
+            <li data-i18n="ngo2">Technical documentation for scalability</li>
+          </ul>
+        </div>
+      </div>
 
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-      <div class="container">
-      	<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>Below are the details to reach out to me!</p>
+      <!-- EDUCATION -->
+      <div class="fade-in">
+        <h3 data-i18n="res_edu">Education</h3>
+        <div class="tl-item">
+          <div class="tl-date">04/2026 – <span data-i18n="present">Present</span></div>
+          <div class="tl-title" data-i18n="msc_title">M.Sc. Data Science</div>
+          <div class="tl-sub">Universität Trier, Germany</div>
+          <div class="about-tags" style="margin-top:.7rem">
+            <span class="tag" style="font-size:.7rem">Big Data Analytics</span>
+            <span class="tag" style="font-size:.7rem">Statistical Methods</span>
+            <span class="tag" style="font-size:.7rem">Data Mining</span>
           </div>
         </div>
+        <div class="tl-item">
+          <div class="tl-date">2020 – 2024</div>
+          <div class="tl-title" data-i18n="btech_title">B.Tech – AI &amp; Data Science</div>
+          <div class="tl-sub">Thakur College of Engineering &amp; Technology, Mumbai</div>
+          <div class="tl-grade">CGPA 8.80 / 10 · ~2.0 German grade</div>
+        </div>
+        <h3 style="margin-top:2rem" data-i18n="res_certs">Certifications</h3>
+        <div class="tl-item">
+          <ul>
+            <li data-i18n="cert1">Data Analytics &amp; Visualisation – Accenture / Forage (Mar 2025)</li>
+            <li data-i18n="cert2">Data Analytics Simulation – Deloitte / Forage (Mar 2025)</li>
+            <li data-i18n="cert3">PG Program in Data Science – Imarticus / NSDC · Grade 9.0/10 (2024)</li>
+            <li data-i18n="cert4">Power BI Essential Training – LinkedIn (Jun 2024)</li>
+            <li data-i18n="cert5">SQL Data Analyst – Internshala (Aug 2024)</li>
+            <li data-i18n="cert6">Tableau Desktop Certified – Internshala (Oct 2024)</li>
+            <li>+ 9 more — <a href="#certifications" style="color:var(--accent);" data-i18n="cert_more">see all certifications ↓</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="resume-dl fade-in">
+      <a href="https://drive.google.com/file/d/17Qsz--0qfW6Vz80gDmk-YXDAWs59pef7/view?usp=sharing"
+         class="btn-primary" target="_blank" data-i18n="dl_cv">
+        ↓ Download CV
+      </a>
+    </div>
+  </div>
+</section>
 
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-map-signs"></span>
-          		</div>
-          		<h3 class="mb-4">Address</h3>
-	            <p>Mumbai, India</p>
-	          </div>
+<!-- ═══ STATS ═════════════════════════════════════ -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card fade-in">
+        <div class="stat-num">12+</div>
+        <div class="stat-label" data-i18n="stat1">Projects Completed</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-num">1.5+</div>
+        <div class="stat-label" data-i18n="stat2">Years Experience</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-num">15+</div>
+        <div class="stat-label" data-i18n="stat3">Certifications</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-num">20+</div>
+        <div class="stat-label" data-i18n="stat4">Workshops Attended</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ══════════════════════════════════ -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label" data-i18n="proj_label">Selected work</p>
+    <h2 class="section-title fade-in"><span data-i18n="proj_title">Featured</span> <span class="dim" data-i18n="proj_title2">Projects</span></h2>
+    <div class="projects-grid">
+
+      <div class="project-card fade-in">
+        <div class="project-thumb project-thumb-1">🔍</div>
+        <div class="project-body">
+          <div class="project-tech">
+            <span class="tech-chip">SQL</span>
+            <span class="tech-chip">PostgreSQL</span>
+            <span class="tech-chip">Data Cleaning</span>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-phone2"></span>
-          		</div>
-          		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="tel://0101010101">+91996711****</a></p>
-	          </div>
+          <div class="project-title" data-i18n="p1_title">Job Market Analysis (SQL)</div>
+          <p class="project-desc" data-i18n="p1_desc">Analysed job market data using advanced SQL to uncover salary trends, top-paying roles, and in-demand skills using CTEs, window functions, and multi-table joins.</p>
+          <a href="https://github.com/Sumit-Upadhya-y/SQL_PROJECT_FOR_JOBS_ANALYSIS" target="_blank" class="project-link">
+            <span data-i18n="proj_view">View on GitHub</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-thumb project-thumb-2">🏏</div>
+        <div class="project-body">
+          <div class="project-tech">
+            <span class="tech-chip">SQL</span>
+            <span class="tech-chip">PostgreSQL</span>
+            <span class="tech-chip">Analytics</span>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-paper-plane"></span>
-          		</div>
-          		<h3 class="mb-4">Email Address</h3>
-	            <p><a href="mailto:info@yoursite.com">upadhyaysumit815@gmail.com</a></p>
-	          </div>
+          <div class="project-title" data-i18n="p2_title">IPL Auction Strategy (SQL)</div>
+          <p class="project-desc" data-i18n="p2_desc">Built a data-driven IPL franchise auction strategy by analysing 13 seasons of player performance — batting averages, bowling economy, strike rates — to assemble an optimised squad.</p>
+          <a href="https://github.com/Sumit-Upadhya-y/SQL_PROJECT" target="_blank" class="project-link">
+            <span data-i18n="proj_view">View on GitHub</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-thumb project-thumb-3">📊</div>
+        <div class="project-body">
+          <div class="project-tech">
+            <span class="tech-chip">Excel</span>
+            <span class="tech-chip">Pivot Tables</span>
+            <span class="tech-chip">Charts</span>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-globe"></span>
-          		</div>
-          		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="https://drive.google.com/file/d/1eFJOyOX6CFas-fBb-1JjWqmB2RnIXkay/view?usp=sharing">Resume link</a></p>
-	          </div>
-          </div>
+          <div class="project-title" data-i18n="p3_title">Fitbit Data Analysis (Excel)</div>
+          <p class="project-desc" data-i18n="p3_desc">Analysed Fitbit fitness tracker data to uncover activity patterns, calorie trends, and sleep cycles using Excel — pivot tables, charts, and data cleaning techniques.</p>
+          <a href="https://github.com/Sumit-Upadhya-y/Analyzing-Fitbit-Fitness-Tracker-Data-using-EXCEL" target="_blank" class="project-link">
+            <span data-i18n="proj_view">View on GitHub</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
 
-		  <div class="container">
-			<br>
-			<br>
-			
-				<br>
-					<ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
-					  <li class="ftco-animate normal-txt">Find me on  </li>
-					  <li class="ftco-animate"><a href="https://www.linkedin.com/in/sumitupadhyay815"><span class="icon-linkedin"></span></a></li>  
-					</ul>
-				<br>
-		   </div>
-   </div>
- </section>
+    </div>
+  </div>
+</section>
 
+<!-- ═══ CERTIFICATIONS ════════════════════════════ -->
+<section id="certifications">
+  <div class="container">
+    <p class="section-label" data-i18n="certs_label">Verified credentials</p>
+    <h2 class="section-title fade-in"><span data-i18n="certs_title">All</span> <span class="dim" data-i18n="certs_title2">Certifications</span></h2>
 
- 
-	
-    <footer class="ftco-footer ftco-section">
-		<div class="container">
-		  <div class="row">
-			<div class="col-md-12 text-center">
-  
-			</div>
-		  </div>
-		</div>
-	  </footer>
+    <div class="cert-grid">
 
+      <!-- 2025 -->
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap teal">🎯</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c1n">Data Analytics &amp; Visualization Job Simulation</div>
+          <div class="cert-issuer">Accenture North America · Forage</div>
+          <span class="cert-date">Mar 2025</span>
+        </div>
+      </div>
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap blue">📊</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c2n">Data Analytics Job Simulation</div>
+          <div class="cert-issuer">Deloitte Australia · Forage</div>
+          <span class="cert-date">Mar 2025</span>
+        </div>
+      </div>
 
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap purple">📈</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c3n">Tableau Desktop Certified</div>
+          <div class="cert-issuer">Internshala Trainings</div>
+          <span class="cert-date">Oct 2024</span>
+        </div>
+      </div>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  
-  <script src="js/main.js"></script>
-    
-  </body>
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap green">🗄️</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c4n">SQL Data Analyst</div>
+          <div class="cert-issuer">Internshala Trainings</div>
+          <span class="cert-date">Aug 2024</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap gold">📋</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c5n">Advance Excel</div>
+          <div class="cert-issuer">Internshala Trainings</div>
+          <span class="cert-date">Jul 2024</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap blue">⚡</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c6n">Power BI Essential Training</div>
+          <div class="cert-issuer">LinkedIn Learning</div>
+          <span class="cert-date">Jun 2024</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap teal">🎓</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c7n">PG Program in Data Science &amp; Analytics</div>
+          <div class="cert-issuer">Imarticus Learning · NSDC &amp; Skill India · Grade 9.0/10</div>
+          <span class="cert-date">Jun – Dec 2024</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap gold">📊</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c8n">Learning Excel: Data Analysis</div>
+          <div class="cert-issuer">LinkedIn Learning</div>
+          <span class="cert-date">May 2024</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap purple">🧠</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c9n">Non-Technical Skills of Effective Data Scientists</div>
+          <div class="cert-issuer">LinkedIn Learning</div>
+          <span class="cert-date">May 2024</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap green">🔬</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c10n">TCR Innovation Workshop</div>
+          <div class="cert-issuer">TCR Innovation · Machine Learning &amp; Skill Dev</div>
+          <span class="cert-date">Jan 2023</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap blue">🐍</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c11n">Data Science with ML &amp; Python Internship Program</div>
+          <div class="cert-issuer">TCR Innovation</div>
+          <span class="cert-date">Nov 2022</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap teal">❓</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c12n">Ask Questions to Make Data-Driven Decisions</div>
+          <div class="cert-issuer">Google</div>
+          <span class="cert-date">Jun 2022</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap purple">🌐</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c13n">Introduction to Big Data</div>
+          <div class="cert-issuer">UC San Diego</div>
+          <span class="cert-date">Jul 2021</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap gold">☕</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c14n">Java Training</div>
+          <div class="cert-issuer">IIT Bombay</div>
+          <span class="cert-date">May 2021</span>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-icon-wrap green">📌</div>
+        <div class="cert-body">
+          <div class="cert-name" data-i18n="c15n">Foundations: Data, Data, Everywhere</div>
+          <div class="cert-issuer">Google</div>
+          <span class="cert-date">Nov 2021</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LANGUAGE BANNER ═══════════════════════════ -->
+<div class="lang-banner">
+  <span class="lang-banner-text" data-i18n="lang_banner_text">🌍 This portfolio is available in German for native speakers</span>
+  <button id="lang-toggle" onclick="toggleLang()">
+    <span class="flag" id="flag-icon">🇩🇪</span>
+    <span id="lang-label" data-i18n="lang_btn">Auf Deutsch wechseln</span>
+  </button>
+</div>
+
+<!-- ═══ CONTACT ═══════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label" data-i18n="contact_label">Get in touch</p>
+    <h2 class="section-title fade-in"><span data-i18n="contact_title">Contact</span> <span class="dim" data-i18n="contact_title2">Me</span></h2>
+    <div class="contact-grid">
+      <div class="contact-card fade-in">
+        <div class="contact-icon">📍</div>
+        <h4 data-i18n="c_addr">Location</h4>
+        <p>Trier, Germany</p>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="contact-icon">📧</div>
+        <h4 data-i18n="c_email">Email</h4>
+        <a href="mailto:upadhyaysumit812@gmail.com">upadhyaysumit812@gmail.com</a>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="contact-icon">📄</div>
+        <h4 data-i18n="c_cv">Download CV</h4>
+        <a href="https://drive.google.com/file/d/17Qsz--0qfW6Vz80gDmk-YXDAWs59pef7/view?usp=sharing" target="_blank" data-i18n="c_cv_link">Open CV →</a>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="contact-icon">💼</div>
+        <h4>LinkedIn</h4>
+        <a href="https://www.linkedin.com/in/sumitupadhyay815" target="_blank">sumitupadhyay815</a>
+      </div>
+    </div>
+    <div class="social-row fade-in">
+      <a href="https://www.linkedin.com/in/sumitupadhyay815" class="social-btn" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Sumit-Upadhya-y" class="social-btn" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════ -->
+<footer>
+  <span data-i18n="footer">Built with passion by</span> <span>Sumit Upadhyay</span> · 2025
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   TRANSLATIONS
+═══════════════════════════════════════════════════ */
+const i18n = {
+  en: {
+    nav_home:"Home", nav_about:"About", nav_resume:"Resume",
+    nav_projects:"Projects", nav_contact:"Contact",
+    hero_badge:"Available for Werkstudent roles · Trier, Germany",
+    hero_iam:"I'm ", hero_works:"My Works",
+    hero_desc:"Data Analyst with 1.5+ years of experience turning raw data into actionable insights — SQL, Python, Power BI & Tableau.",
+    hero_scroll:"scroll",
+    about_label:"Get to know me", about_title:"About", about_title2:"Me",
+    ab_name_l:"Name", ab_loc_l:"Location", ab_study_l:"Currently",
+    ab_study_v:"M.Sc. Data Science · Uni Trier", ab_lang_l:"Languages",
+    skill_dataviz:"Data Visualisation",
+    about_heading:"Turning data into decisions.",
+    about_p1:"A passionate Data Analyst currently pursuing my M.Sc. in Data Science at Universität Trier. I specialise in building KPI dashboards, automating ETL pipelines, and conducting root cause analysis that directly improves business efficiency.",
+    about_p2:"With 1.5+ years of professional experience at SDU Tradelink and TWN Logistics, I've worked end-to-end: from raw PostgreSQL queries to polished Tableau dashboards used by management teams.",
+    res_label:"Experience & Education", res_title:"My", res_title2:"Resume",
+    res_exp:"Work Experience", res_edu:"Education", res_certs:"Certifications",
+    sdu1:"Tableau KPI dashboards → 30% faster management decisions",
+    sdu2:"Automated ETL pipelines with Python & SQL",
+    sdu3:"Root cause analysis → reduced downtime by 20%",
+    sdu4:"SOP documentation & process standardisation",
+    twn_title:"Data Analyst Intern",
+    twn1:"ETL workflows for logistics datasets",
+    twn2:"Power BI & Tableau dashboards → 25% faster decisions",
+    twn3:"Defined & tracked data quality KPIs",
+    ngo_title:"Web Developer Intern",
+    ngo1:"MySQL-backed web apps with HTML & CSS",
+    ngo2:"Technical documentation for scalability",
+    present:"Present",
+    msc_title:"M.Sc. Data Science",
+    btech_title:"B.Tech – AI & Data Science",
+    cert1:"Data Analytics & Visualisation – Accenture / Forage (Mar 2025)",
+    cert2:"Data Analytics Simulation – Deloitte / Forage (Mar 2025)",
+    cert3:"PG Program in Data Science – Imarticus / NSDC · Grade 9.0/10 (2024)",
+    cert4:"Power BI Essential Training – LinkedIn (Jun 2024)",
+    cert5:"SQL Data Analyst – Internshala (Aug 2024)",
+    cert6:"Tableau Desktop Certified – Internshala (Oct 2024)",
+    cert_more:"see all certifications ↓",
+    dl_cv:"↓ Download CV",
+    stat1:"Projects Completed", stat2:"Years Experience",
+    stat3:"Certifications", stat4:"Workshops Attended",
+    proj_label:"Selected work", proj_title:"Featured", proj_title2:"Projects",
+    p1_title:"Job Market Analysis (SQL)",
+    p1_desc:"Analysed job market data using advanced SQL to uncover salary trends, top-paying roles, and in-demand skills using CTEs, window functions, and multi-table joins.",
+    p2_title:"IPL Auction Strategy (SQL)",
+    p2_desc:"Built a data-driven IPL franchise auction strategy by analysing 13 seasons of player performance — batting averages, bowling economy, strike rates — to assemble an optimised squad.",
+    p3_title:"Fitbit Data Analysis (Excel)",
+    p3_desc:"Analysed Fitbit fitness tracker data to uncover activity patterns, calorie trends, and sleep cycles using Excel — pivot tables, charts, and data cleaning techniques.",
+    proj_view:"View on GitHub",
+    certs_label:"Verified credentials", certs_title:"All", certs_title2:"Certifications",
+    nav_certs:"Certs",
+    c1n:"Data Analytics & Visualization Job Simulation",
+    c2n:"Data Analytics Job Simulation",
+    c3n:"Tableau Desktop Certified",
+    c4n:"SQL Data Analyst",
+    c5n:"Advance Excel",
+    c6n:"Power BI Essential Training",
+    c7n:"PG Program in Data Science & Analytics",
+    c8n:"Learning Excel: Data Analysis",
+    c9n:"Non-Technical Skills of Effective Data Scientists",
+    c10n:"TCR Innovation Workshop",
+    c11n:"Data Science with ML & Python Internship Program",
+    c12n:"Ask Questions to Make Data-Driven Decisions",
+    c13n:"Introduction to Big Data",
+    c14n:"Java Training",
+    c15n:"Foundations: Data, Data, Everywhere",
+    lang_banner_text:"🌍 This portfolio is available in German for native speakers",
+    lang_btn:"Switch to Deutsch",
+    contact_label:"Get in touch", contact_title:"Contact", contact_title2:"Me",
+    c_addr:"Location", c_email:"Email", c_cv:"Download CV", c_cv_link:"Open CV →",
+    footer:"Built with passion by",
+  },
+  de: {
+    nav_home:"Startseite", nav_about:"Über mich", nav_resume:"Lebenslauf",
+    nav_projects:"Projekte", nav_contact:"Kontakt", nav_certs:"Zertifikate",
+    hero_badge:"Offen für Werkstudentenstellen · Trier, Deutschland",
+    hero_iam:"Ich bin ", hero_works:"Meine Projekte",
+    hero_desc:"Data Analyst mit 1,5+ Jahren Erfahrung, der Rohdaten in verwertbare Erkenntnisse verwandelt – SQL, Python, Power BI & Tableau.",
+    hero_scroll:"scrollen",
+    about_label:"Lerne mich kennen", about_title:"Über", about_title2:"Mich",
+    ab_name_l:"Name", ab_loc_l:"Standort", ab_study_l:"Aktuell",
+    ab_study_v:"M.Sc. Data Science · Uni Trier", ab_lang_l:"Sprachen",
+    skill_dataviz:"Datenvisualisierung",
+    about_heading:"Daten in Entscheidungen verwandeln.",
+    about_p1:"Leidenschaftlicher Data Analyst, derzeit im M.Sc.-Studiengang Data Science an der Universität Trier eingeschrieben. Ich spezialisiere mich auf KPI-Dashboards, ETL-Automatisierung und Ursachenanalyse zur Steigerung der Geschäftseffizienz.",
+    about_p2:"Mit 1,5+ Jahren Berufserfahrung bei SDU Tradelink und TWN Logistics habe ich den gesamten Datenworkflow betreut: von PostgreSQL-Abfragen bis hin zu Tableau-Dashboards für das Management.",
+    res_label:"Erfahrung & Ausbildung", res_title:"Mein", res_title2:"Lebenslauf",
+    res_exp:"Berufserfahrung", res_edu:"Ausbildung", res_certs:"Zertifikate",
+    sdu1:"Tableau-KPI-Dashboards → 30 % schnellere Managemententscheidungen",
+    sdu2:"Automatisierung von ETL-Pipelines mit Python & SQL",
+    sdu3:"Ursachenanalyse → Ausfallzeiten um 20 % reduziert",
+    sdu4:"Prozessdokumentation & SOP-Standardisierung",
+    twn_title:"Data Analyst Praktikum",
+    twn1:"ETL-Workflows für Logistikdatensätze",
+    twn2:"Power BI & Tableau Dashboards → 25 % schnellere Entscheidungen",
+    twn3:"Definition & Überwachung von Datenqualitäts-KPIs",
+    ngo_title:"Webentwickler Praktikum",
+    ngo1:"MySQL-basierte Webanwendungen mit HTML & CSS",
+    ngo2:"Technische Dokumentation für Skalierbarkeit",
+    present:"Aktuell",
+    msc_title:"M.Sc. Data Science",
+    btech_title:"B.Tech – KI & Data Science",
+    cert1:"Datenanalyse & Visualisierung – Accenture / Forage (Mär 2025)",
+    cert2:"Data-Analytics-Simulation – Deloitte / Forage (Mär 2025)",
+    cert3:"Postgraduales Programm Data Science – Imarticus / NSDC · Note 9,0/10 (2024)",
+    cert4:"Power BI Grundlagenschulung – LinkedIn (Jun 2024)",
+    cert5:"SQL Data Analyst – Internshala (Aug 2024)",
+    cert6:"Tableau Desktop Zertifiziert – Internshala (Okt 2024)",
+    cert_more:"alle Zertifikate ansehen ↓",
+    dl_cv:"↓ Lebenslauf herunterladen",
+    stat1:"Abgeschlossene Projekte", stat2:"Jahre Erfahrung",
+    stat3:"Zertifikate", stat4:"Besuchte Workshops",
+    proj_label:"Ausgewählte Arbeiten", proj_title:"Ausgewählte", proj_title2:"Projekte",
+    p1_title:"Arbeitsmarktanalyse (SQL)",
+    p1_desc:"Analyse von Arbeitsmarktdaten mit fortgeschrittenem SQL zur Identifizierung von Gehaltstrends, Top-Rollen und gefragten Fähigkeiten mit CTEs, Window-Funktionen und Joins.",
+    p2_title:"IPL-Auktionsstrategie (SQL)",
+    p2_desc:"Datengetriebene Auktionsstrategie für ein IPL-Franchise durch Analyse von 13 Saisons Spielerleistung – Schlagdurchschnitte, Bowling-Economy und Schlagrate.",
+    p3_title:"Fitbit-Datenanalyse (Excel)",
+    p3_desc:"Analyse von Fitbit-Fitnesstracker-Daten zur Aufdeckung von Aktivitätsmustern, Kalorientrends und Schlafzyklen mit Excel – Pivot-Tabellen, Diagramme und Datenbereinigung.",
+    proj_view:"Auf GitHub ansehen",
+    certs_label:"Nachgewiesene Qualifikationen", certs_title:"Alle", certs_title2:"Zertifikate",
+    c1n:"Datenanalyse & Visualisierungs-Job-Simulation",
+    c2n:"Data-Analytics-Job-Simulation",
+    c3n:"Tableau Desktop Zertifiziert",
+    c4n:"SQL Data Analyst",
+    c5n:"Fortgeschrittenes Excel",
+    c6n:"Power BI Grundlagenschulung",
+    c7n:"Postgraduales Programm in Data Science & Analytics",
+    c8n:"Excel kennenlernen: Datenanalyse",
+    c9n:"Nicht-technische Fähigkeiten effektiver Data Scientists",
+    c10n:"TCR Innovation Workshop",
+    c11n:"Data Science mit ML & Python Praktikumsprogramm",
+    c12n:"Fragen stellen für datengestützte Entscheidungen",
+    c13n:"Einführung in Big Data",
+    c14n:"Java-Training",
+    c15n:"Grundlagen: Daten, Daten, überall",
+    lang_banner_text:"🌍 Dieses Portfolio ist auch auf Englisch verfügbar",
+    lang_btn:"Switch to English",
+    contact_label:"Kontakt aufnehmen", contact_title:"Kontaktiere", contact_title2:"Mich",
+    c_addr:"Standort", c_email:"E-Mail", c_cv:"Lebenslauf herunterladen", c_cv_link:"Lebenslauf öffnen →",
+    footer:"Mit Leidenschaft entwickelt von",
+  }
+};
+
+let currentLang = 'en';
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'de' : 'en';
+  const t = i18n[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+  const btn = document.getElementById('lang-toggle');
+  const flag = document.getElementById('flag-icon');
+  const label = document.getElementById('lang-label');
+  if (currentLang === 'de') {
+    flag.textContent = '🇬🇧';
+    label.textContent = 'English';
+    document.documentElement.lang = 'de';
+  } else {
+    flag.textContent = '🇩🇪';
+    label.textContent = 'Deutsch';
+    document.documentElement.lang = 'en';
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   TYPING ANIMATION
+═══════════════════════════════════════════════════ */
+const typingEl = document.getElementById('typing-text');
+const textsEN = ['SQL Developer', 'BI Analyst', 'Data Engineer', 'AI & ML Enthusiast'];
+const textsDE = ['SQL-Entwickler', 'BI-Analyst', 'Dateningenieur', 'KI & ML Enthusiast'];
+let tIdx = 0, cIdx = 0, deleting = false;
+
+function typeLoop() {
+  const texts = currentLang === 'de' ? textsDE : textsEN;
+  const current = texts[tIdx % texts.length];
+  if (!deleting) {
+    typingEl.textContent = current.slice(0, ++cIdx);
+    if (cIdx === current.length) { deleting = true; setTimeout(typeLoop, 1800); return; }
+  } else {
+    typingEl.textContent = current.slice(0, --cIdx);
+    if (cIdx === 0) { deleting = false; tIdx++; setTimeout(typeLoop, 300); return; }
+  }
+  setTimeout(typeLoop, deleting ? 55 : 110);
+}
+typeLoop();
+
+/* ═══════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (i * 0.08) + 's';
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ═══════════════════════════════════════════════════
+   SKILL BAR ANIMATION
+═══════════════════════════════════════════════════ */
+const skillObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.skill-fill').forEach(bar => {
+        const w = parseFloat(bar.style.getPropertyValue('--w'));
+        bar.style.width = (w * 100) + '%';
+        bar.classList.add('animated');
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.about-card').forEach(el => skillObserver.observe(el));
+</script>
+</body>
 </html>
